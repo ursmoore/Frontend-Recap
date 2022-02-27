@@ -26,18 +26,25 @@ const MySpace = () => {
   }, [token, navigate]);
 
   /////////////////////////////////////////
-  /// FEATURE 5 -> ADD STORY TO SPACE AND DATABASE
+  /// FEATURE 5 -> ADD STORY TO SPACE AND DATABASE WITH HANDLESUBMIT
 
   const [story, setStory] = useState(false);
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
-  // function handleSubmitAddStory(event) {
-  //   // event.preventDefault();
-  //   // console.log("name,content,image", name, content, image);
-  //   dispatch(addStoryToDataBase(name, content, imageUrl, spaceDetails.id));
-  // }
+  function handleSubmit(event) {
+    event.preventDefault();
+    // console.log("name,content,image", name, content, image);
+    dispatch(addStoryToDataBase(name, content, imageUrl, spaceDetails.id));
+    // dispatch(editSpace(title, description, newBackground, newColor));
+
+    ///////// here i empty strings so form is refreshed and colapses!!!!!!!!!!!!!!!!
+    setName("");
+    setContent("");
+    setImageUrl("");
+    setStory(false);
+  }
 
   ////////////////////////////////////////
   /// FEATURE 6 EDIT SPACE
@@ -73,6 +80,7 @@ const MySpace = () => {
           </button>
           {story ? (
             <form
+              onSubmit={handleSubmit}
               style={{
                 display: "flex",
                 margin: "20px",
@@ -103,19 +111,17 @@ const MySpace = () => {
               {/* HERE I MAKE PREVIEW FOR PHOTO */}
               <img src={imageUrl} alt={""} width={300} />
               <button
-                onClick={() =>
+                onClick={(event) =>
                   dispatch(
                     // HERE I MAKE MESSAGE WHEN SUBMIT WAS SUCCESFULL//
                     showMessageWithTimeout(
                       "success",
                       false,
                       "Super! You added a story!"
-                    ),
-                    // addStoryToDataBase(name, content, imageUrl)
-                    addStoryToDataBase(name, content, imageUrl, spaceDetails.id)
-                    // handleSubmitAddStory
+                    )
                   )
                 }
+                type="submit"
               >
                 ADD STORY BRO!
               </button>

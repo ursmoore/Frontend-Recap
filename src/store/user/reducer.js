@@ -36,27 +36,33 @@ export default (state = initialState, action) => {
       };
     }
 
+    //START OF REDUCER FOR FEATURE 5 BUT DO NOT KNOW IF IT IS NECCESSARY?
     case "user/addStoryToSpace": {
+      console.log("waht is action payload", action.payload);
       return {
         ...state,
-        space: {},
+        space: {
+          ...state.space,
+          stories: [...state.space.stories, action.payload],
+        },
       };
     }
 
     /////////FEATURE 6 REDUCER ///// SOMEHOW NOT NEEEDED /////////
-    // case "spaces/edit": {
-    //   return {
-    //     ...state,
-    //     space: {
-    //       ...state.space,
-    //       title: action.payload.title,
-    //       description: action.payload.description,
-    //       backgroundColor: action.payload.backgroundColor,
-    //       color: action.payload.color,
-    //       stories: [...state.space.stories],
-    //     },
-    //   };
-    // }
+    //// WHY DOES IT WORK WITHOUT REDUCER?
+    case "spaces/edit": {
+      return {
+        ...state,
+        space: {
+          ...state.space,
+          title: action.payload.title,
+          description: action.payload.description,
+          backgroundColor: action.payload.backgroundColor,
+          color: action.payload.color,
+          stories: [...state.space.stories],
+        },
+      };
+    }
 
     default:
       return state;

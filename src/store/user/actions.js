@@ -149,7 +149,7 @@ export const addStoryToSpace = (data) => {
 };
 
 export function addStoryToDataBase(name, content, imageUrl, id) {
-  console.log("and now i am here");
+  console.log("and now i am here!!!!!!!!!");
   return async function thunk(dispatch, getState) {
     console.log("what are the parameters", name, content, imageUrl, id);
     //get token from state
