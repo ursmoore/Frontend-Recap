@@ -132,7 +132,7 @@ const MySpace = () => {
         </div>
         <div>
           <button value={edit} onClick={() => setEdit(!edit)}>
-            Edit Space
+            EDIT SPACE
           </button>
           {edit ? (
             <form
