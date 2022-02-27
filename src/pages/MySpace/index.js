@@ -45,7 +45,7 @@ const MySpace = () => {
     setStory(false);
   }
 
-  ////////////////////////////////////////
+  ////////////////////////////////////////////////////////
   /// FEATURE 6 EDIT SPACE
   const [edit, setEdit] = useState(false);
   const [title, setTitle] = useState("");
@@ -53,18 +53,18 @@ const MySpace = () => {
   const [newBackground, setNewBackground] = useState("");
   const [newColor, setNewColor] = useState("");
 
-  // function handleSubmitEdit(event) {
-  //   console.log("input", name, content, imageUrl);
-  //   event.preventDefault();
-  //   dispatch(editSpace(title, description, newBackground, newColor));
+  function handleSubmitEdit(event) {
+    console.log("input", name, content, imageUrl);
+    event.preventDefault();
+    dispatch(editSpace(title, description, newBackground, newColor));
 
-  //   setTitle("");
-  //   setDescription("");
+    setTitle("");
+    setDescription("");
 
-  //   setNewBackground("");
-  //   setNewColor("");
-  //   setEdit(false);
-  // }
+    setNewBackground("");
+    setNewColor("");
+    setEdit(false);
+  }
 
   // HERE I MAKE A USE EFFECT FOR UPDATING COLOR AND BACKGROUND FEATURE 6
   useEffect(() => {
@@ -148,6 +148,7 @@ const MySpace = () => {
           </button>
           {edit ? (
             <form
+              onSubmit={handleSubmitEdit}
               style={{
                 display: "flex",
                 margin: "20px",
@@ -182,24 +183,17 @@ const MySpace = () => {
                 type="color"
                 placeholder="give me a color!"
               ></input>
-              <button
-                onClick={() =>
-                  dispatch(
-                    editSpace(title, description, newBackground, newColor)
-                  )
-                }
-              >
-                SUBMIT EDIT
-              </button>
+              <button>SUBMIT EDIT</button>
             </form>
           ) : (
             ""
           )}
         </div>
         {spaceDetails.stories
-          // .sort((a, b) => b.createdAt - a.createdAt)
-          //////// ID WORKS BUT CREATEDAT DOESNT ?????????????
-          .sort((a, b) => b.id - a.id)
+          //// SORT BY DATE CREATED AT /////////////////
+          .sort((a, b) => {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+          })
           .map((story) => {
             return (
               <div key={story.id}>

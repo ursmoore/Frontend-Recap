@@ -173,7 +173,8 @@ export function addStoryToDataBase(name, content, imageUrl, id) {
 
 //FEATURE 6 EDITING SPACE FORM
 export const editSpaceUser = (data) => ({
-  type: "spaces/editSpaceUser",
+  // type: "spaces/editSpaceUser",
+  type: "user/editSpaceUser",
   payload: data,
 });
 

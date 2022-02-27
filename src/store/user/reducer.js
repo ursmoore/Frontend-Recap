@@ -50,19 +50,19 @@ export default (state = initialState, action) => {
 
     // /////////FEATURE 6 REDUCER ///// SOMEHOW NOT NEEEDED /////////
     // //// WHY DOES IT WORK WITHOUT REDUCER?
-    // case "spaces/edit": {
-    //   return {
-    //     ...state,
-    //     space: {
-    //       ...state.space,
-    //       title: action.payload.title,
-    //       description: action.payload.description,
-    //       backgroundColor: action.payload.backgroundColor,
-    //       color: action.payload.color,
-    //       stories: [...state.space.stories],
-    //     },
-    //   };
-    // }
+    case "user/editSpaceUser": {
+      return {
+        ...state,
+        space: {
+          ...state.space,
+          title: action.payload.title,
+          description: action.payload.description,
+          backgroundColor: action.payload.backgroundColor,
+          color: action.payload.color,
+          stories: [...state.space.stories],
+        },
+      };
+    }
 
     default:
       return state;

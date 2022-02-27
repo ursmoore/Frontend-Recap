@@ -28,7 +28,9 @@ const DetailsPage = () => {
     >
       <div>This is the DETAILSPAGE! HERE YOU SEE THE SPACE</div>
       {spaceDetails.stories
-        .sort((a, b) => b.createdAt - a.createdAt)
+        .sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        })
         .map((story) => {
           return (
             <div key={story.id}>
