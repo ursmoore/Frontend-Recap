@@ -37,7 +37,6 @@ const MySpace = () => {
     event.preventDefault();
     // console.log("name,content,image", name, content, image);
     dispatch(addStoryToDataBase(name, content, imageUrl, spaceDetails.id));
-    // dispatch(editSpace(title, description, newBackground, newColor));
 
     ///////// here i empty strings so form is refreshed and colapses!!!!!!!!!!!!!!!!
     setName("");
@@ -53,6 +52,19 @@ const MySpace = () => {
   const [description, setDescription] = useState("");
   const [newBackground, setNewBackground] = useState("");
   const [newColor, setNewColor] = useState("");
+
+  // function handleSubmitEdit(event) {
+  //   console.log("input", name, content, imageUrl);
+  //   event.preventDefault();
+  //   dispatch(editSpace(title, description, newBackground, newColor));
+
+  //   setTitle("");
+  //   setDescription("");
+
+  //   setNewBackground("");
+  //   setNewColor("");
+  //   setEdit(false);
+  // }
 
   // HERE I MAKE A USE EFFECT FOR UPDATING COLOR AND BACKGROUND FEATURE 6
   useEffect(() => {
@@ -185,7 +197,9 @@ const MySpace = () => {
           )}
         </div>
         {spaceDetails.stories
-          .sort((a, b) => a.createdAt - b.createdAt)
+          // .sort((a, b) => b.createdAt - a.createdAt)
+          //////// ID WORKS BUT CREATEDAT DOESNT ?????????????
+          .sort((a, b) => b.id - a.id)
           .map((story) => {
             return (
               <div key={story.id}>
